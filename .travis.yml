@@ -8,3 +8,18 @@ before_install:
 
 script:
   - docker run -e CI=true doronma/docker-react npm run test
+
+deploy:
+  provider: elasticbeanstalk
+  region: "eu-central-1"
+  app: "Docker-React"
+  env: "DockerReact-env"
+  bucket_name: "elasticbeanstalk-eu-central-1-867433151820"
+  backet_path: "Docker-React"
+  on:
+    branch: master
+
+access_key_id:
+ secure: "$AWS_ACCESS_KEY"
+secret_access_key:
+ secure: "$AWS_SECRET_KEY"
